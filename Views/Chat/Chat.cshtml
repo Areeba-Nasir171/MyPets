@@ -1,0 +1,46 @@
+﻿@{
+	ViewData["Title"] = "Chat with Vet";
+}
+
+<div class="chat-box">
+	<h3>🚨 Chat with Vet</h3>
+
+	<input type="text" id="name" placeholder="Your Name" />
+	<textarea id="message" placeholder="Ask about your pet..."></textarea>
+
+	<button onclick="sendMessage()">Send</button>
+
+	<div id="chatArea"></div>
+</div>
+
+<script>
+	function sendMessage(){
+		fetch('/Chat/Send', {
+			method: 'POST',
+			headers: {'Content-Type':'application/json'},
+			body: JSON.stringify({
+				userName: document.getElementById("name").value,
+				message: document.getElementById("message").value
+			})
+		})
+		.then(res => res.json())
+		.then(() => loadMessages());
+	}
+
+	function loadMessages(){
+		fetch('/Chat/GetMessages')
+		.then(res => res.json())
+		.then(data => {
+			let html = "";
+			data.forEach(x => {
+				html += `<p><b>${x.userName}:</b> ${x.message}</p>`;
+				if(x.reply){
+					html += `<p style="color:green;"><b>Vet:</b> ${x.reply}</p>`;
+				}
+			});
+			document.getElementById("chatArea").innerHTML = html;
+		});
+	}
+
+	setInterval(loadMessages, 3000);
+</script>

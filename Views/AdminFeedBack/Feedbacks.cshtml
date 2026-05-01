@@ -1,0 +1,60 @@
+﻿@{
+
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<FeedBack>
+
+
+
+<div class="container mt-4" style="max-width: 60%;">
+	<h2 class="mb-3 fw-bold">FeedBack</h2>
+
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover align-middle text-center" style="font-size: 0.9rem;">
+			<thead class="table-light">
+				<tr>
+					<th>Image</th>
+					<th>Name</th>
+					<th>Message</th>
+					<th>Passion</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+
+					<tr>
+						<td>
+							<img src="/Image/@item.ImagePath"
+								 style="width:60px; height:60px; border-radius:50%; object-fit:cover;" />
+						</td>
+
+						<td>@item.Name</td>
+						<td>@item.Message</td>
+						<td>@item.Passion</td>
+
+						<td>
+							@if (!item.IsApproved)
+							{
+								<a asp-controller="AdminFeedBack"
+								   asp-action="Approve"
+								   asp-route-id="@item.FId">
+									Approve
+								</a>
+							}
+							|
+							<a asp-controller="AdminFeedBack"
+							   asp-action="Delete"
+							   asp-route-id="@item.FId">
+								Delete
+							</a>
+						</td>
+					</tr>
+
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

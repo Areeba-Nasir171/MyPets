@@ -1,0 +1,56 @@
+﻿@{
+
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model List<ServiceBooking>
+
+<div class="container mt-4" style="max-width: 60%;">
+	<h2 class="mb-3 fw-bold">Pets Services</h2>
+
+	<div class="table-responsive">
+
+		<table class="table table-bordered table-hover align-middle text-center" style="font-size: 0.9rem;">
+			<thead class="table-light">
+				<tr>
+					<th>Pet</th>
+					<th>Owner</th>
+					<th>Service</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.PetName</td>
+						<td>@item.OwnerName</td>
+						<td>@item.ServiceType</td>
+						<td>@item.Date</td>
+						<td>@item.Status</td>
+						<td>
+							@if (item.Status == "Pending")
+							{
+								<span class="badge bg-warning">Pending</span>
+							}
+							else if (item.Status == "Approved")
+							{
+								<span class="badge bg-success">Approved</span>
+							}
+							else
+							{
+								<span class="badge bg-danger">Rejected</span>
+							}
+						</td>
+						<td>
+							<a href="/AdminService/Approve/@item.SId" class="btn btn-success btn-sm">Approve</a>
+							<a href="/AdminService/Reject/@item.SId" class="btn btn-danger btn-sm">Reject</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+</div>

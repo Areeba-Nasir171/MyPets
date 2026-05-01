@@ -1,0 +1,38 @@
+﻿@{
+
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model MyPets.Models.PetAdopt
+
+<h2>Add Pet</h2>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+	<div class="w-50">
+
+		<form asp-action="Create" method="post" enctype="multipart/form-data">
+
+			<div class="mb-2">
+				<label>Name</label>
+				<input asp-for="PetName" class="form-control" />
+			</div>
+
+			<div class="mb-2">
+				<a href="c:\asp_project\mypets\views\petadopted\create.cshtml">c:\asp_project\mypets\views\petadopted\create.cshtml</a>
+				<label>Image</label>
+				<input type="file" asp-for="ImgFile" class="form-control" />
+			</div>
+
+			<div class="mb-2">
+				<label>Status</label>
+				<select asp-for="Status" class="form-control">
+					<option value="Adopted">Adopted</option>
+					<option value="NotAdopted">Not Adopted</option>
+				</select>
+			</div>
+
+			<button class="btn btn-primary">Save</button>
+		</form>
+
+	</div>
+</div>

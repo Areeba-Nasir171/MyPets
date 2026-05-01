@@ -1,0 +1,45 @@
+﻿@{
+
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model MyPets.Models.PetAdopt
+
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+	<div class="w-50">
+		<h2>Edit Pet</h2>
+
+		<form asp-action="Edite" method="post" enctype="multipart/form-data">
+
+			<input type="hidden" asp-for="Id" />
+
+			<div class="mb-2">
+				<label>Name</label>
+				<input asp-for="PetName" class="form-control" />
+			</div>
+
+			<div class="mb-2">
+				<label>Image</label>
+				<input type="file" asp-for="ImgFile" class="form-control" />
+			</div>
+
+			<div class="mb-2">
+				<label>Status</label>
+				<select asp-for="Status" class="form-control">
+					<option value="Adopted">Adopted</option>
+					<option value="NotAdopted">Not Adopted</option>
+				</select>
+			</div>
+
+			<button class="btn px-4 py-2 fw-bold text-white"
+					style="background-color:#198754;"
+					onmouseover="this.style.backgroundColor='#0d6efd';"
+					onmouseout="this.style.backgroundColor='#198754';">
+				Update
+			</button>
+		</form>
+
+	</div>
+
+</div>

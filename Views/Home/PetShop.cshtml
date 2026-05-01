@@ -1,0 +1,102 @@
+﻿@{
+	ViewData["Title"] = "PetShop";
+
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<Product>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="hero-wrap js-fullheight" style="background-image: url('@Url.Content("~/images/bg_1.jpg")');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+			<div class="col-md-11 ftco-animate text-center">
+				<h1 class="mb-4">Pet Shop & Supplies</h1>
+				<h5 style="color: white;">
+					Everything your pet needs under one roof
+				</h5>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="ftco-section bg-light">
+	<div class="container">
+		<div class="row justify-content-center pb-5 mb-3">
+			<div class="col-md-7 heading-section text-center ftco-animate">
+				<h2>PetShop</h2>
+			</div>
+		</div>
+
+
+
+		<div class="container position-relative">
+			<div class="row justify-content-center ">
+				@foreach (var item in Model.Take(9))
+				{
+					<div class="col-lg-4 col-md-6 mb-4 d-flex">
+						<div class="blog-entry w-100 d-flex flex-column">
+
+							<a href="#" class="block-20 rounded"
+							   style="
+       background-image: url('@item.ImageUrl');
+       height:220px;
+       display:block;
+       background-size: cover;
+       background-position: center;
+       background-repeat: no-repeat;"
+							   style="background-image: url('@item.ImageUrl'); display:block;">
+							</a>
+
+							<div class="text p-3 d-flex flex-column flex-grow-1">
+								<h3 class="heading">@item.Name</h3>
+
+								<div class="meta mb-1">
+									<div>@item.Category</div>
+
+								</div>
+								<div class="meta mb-1">
+									<div>Rs @item.Price</div>
+								</div>
+								<div class="meta mb-1">
+									<div>Rs @item.Description</div>
+								</div>
+
+								<a asp-controller="Order" asp-action="ByNow"
+								   asp-route-id="@item.Id"
+								   class="btn btn-success btn-sm mt-auto">
+									Buy Now
+								</a>
+
+
+							</div>
+
+						</div>
+
+					</div>
+
+
+				}
+
+
+			</div>
+		</div>
+
+
+
+
+
+	</div>
+</section>

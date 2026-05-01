@@ -1,0 +1,63 @@
+﻿@{
+
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model List<MyPets.Models.PetAdopt>
+
+
+<div class="container mt-4" style="max-width: 60%;">
+	<h2 class="mb-3 fw-bold">All Pets</h2>
+
+
+	<a asp-action="Create" class="btn mb-3 px-4 py-2 fw-bold text-white"
+	   style="background-color:#198754;"
+	   onmouseover="this.style.backgroundColor='#0d6efd';"
+	   onmouseout="this.style.backgroundColor='#198754';">
+		Add New Pet
+	</a>
+
+
+
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover align-middle text-center" style="font-size: 0.9rem;">
+			<thead class="table-light">
+				<tr>
+					<th>Name</th>
+					<th>Image</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.PetName</td>
+
+						<td>
+							@if (!string.IsNullOrEmpty(item.ImageUrl))
+							{
+								<img src="@item.ImageUrl" width="80" />
+							}
+						</td>
+						<td>@item.Status</td>
+						<td>
+							<a asp-action="Edite" asp-route-id="@item.Id" class="btn btn-sm px-2 me-1 fw-bold text-white"
+							   style="background-color:#198754;"
+							   onmouseover="this.style.backgroundColor='#0d6efd';"
+							   onmouseout="this.style.backgroundColor='#198754';">Edit</a>
+
+							<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm px-2 fw-bold text-white"
+							   style="background-color:#a71d2a;"
+							   onmouseover="this.style.backgroundColor='#dc3545';"
+							   onmouseout="this.style.backgroundColor='#a71d2a';">
+								Delete
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+	</div>
+</div>
